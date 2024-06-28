@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "cloud-dev": {
+      "type": "library",
+      "root": "libs/cloud-dev",
+      "entryFile": "index",
+      "sourceRoot": "libs/cloud-dev/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/cloud-dev/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}

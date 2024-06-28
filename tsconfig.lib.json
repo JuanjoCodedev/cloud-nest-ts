@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"],
+  "paths": {
+    "@app/cloud-dev": ["libs/cloud-dev/src"],
+    "@app/cloud-dev/*": ["libs/cloud-dev/src/*"]
+  }
+}
