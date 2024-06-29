@@ -5,8 +5,10 @@ import * as fs from 'fs';
 type ResourceType = 'image' | 'video' | 'raw' | 'auto' | undefined;
 type CropType = 'scale' | 'fit' | 'limit' | 'mfit' | 'fill' | 'pad' | 'lpad' | 'mpad' | 'crop' | 'thumb' | undefined;
 type GravityType = 'north' | 'north_east' | 'north_west' | 'south' | 'south_east' | 'south_west' | 'east' | 'west' | 'center' | 'face' | 'faces' | undefined;
-type EffectType = 'sepia' | 'grayscale' | 'blackwhite' | 'sharpen' | 'blur' | 'oil_paint' | 'pixelate' | 'vignette' | 'brightness_contrast' | 'auto_brightness' | 'auto_color' | 'auto_contrast' | 'improve' | undefined;
+type EffectType = 'sepia' | 'grayscale' | 'blackwhite' | 'sharpen' | 'blur' | 'oil_paint' | 'pixelate' | 'vignette' | 'brightness_contrast' | 'auto_brightness' | 'auto_color' | 'auto_contrast' | 'improve' | string | undefined;
 type Radius = 'max' | 'min' | string | number;
+type FetchFormatType = 'auto' | 'webp' | 'jpg' | 'png' | undefined;
+type QualityType = 'auto:best' | 'auto:good' | 'auto:eco' | 'auto' | number | undefined;
 
 interface IUploadOptions {
   cloudFolder: string;
@@ -23,8 +25,9 @@ interface IUploadOptions {
   cloudEffect?: EffectType;
   cloudRadius?:Radius ;
   cloudAngle?:number;
+  cloudFetchFormat?: FetchFormatType;
+  cloudQuality?: QualityType;
   cloudDeleteLocalFile?: boolean;
-  
 }
 
 @Injectable()
@@ -54,6 +57,8 @@ export class CloudDevService {
         effect: options.cloudEffect,
         radius: options.cloudRadius,
         angle:  options.cloudAngle,
+        quality: options.cloudQuality,
+        fetch_format: options.cloudFetchFormat
       };
 
       const result = await cloudinary.v2.uploader.upload(file.path, cloudinaryOptions);

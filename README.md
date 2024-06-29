@@ -80,10 +80,10 @@ El método **uploadCloud()** del servicio CloudDevService permite subir un archi
 **Parámetros:**
 
 - 📄 **file:** El archivo a cargar. Este parámetro es obligatorio.
-- 📁 **folder:** La carpeta en Cloudinary donde se almacenará el archivo. Este parámetro es obligatorio.
-- 🔧 **resourceType:** Tipo de recurso ("image", "video", "raw", "auto"). Este parámetro es obligatorio.
-- 📝 **format:** Formato del archivo (por ejemplo, "jpg", "mp4", "pdf"). Este parámetro es obligatorio.
-- 🗑️ **deleteLocalFile:** Elimina el archivo local después de cargarlo en Cloudinary (true o false), Este parámetro es opcional.
+- 📁 **cloudFolder:** La carpeta en Cloudinary donde se almacenará el archivo. Este parámetro es obligatorio.
+- 🔧 **cloudResourceType:** Tipo de recurso ("image", "video", "raw", "auto"). Este parámetro es obligatorio.
+- 📝 **cloudFormat:** Formato del archivo (por ejemplo, "jpg", "mp4", "pdf"). Este parámetro es obligatorio.
+- 🗑️ **cloudDeleteLocalFile:** Elimina el archivo local después de cargarlo en Cloudinary (true o false), Este parámetro es opcional.
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -100,7 +100,7 @@ export class MyService {
         cloudResourceType: 'image',
         cloudFormat: 'jpg',
         cloudRadius: "max",
-        cloudDreleteLocalFile: true,
+        cloudDeleteLocalFile: true,
       });
       return { success: true, file: result };
     } catch (error) {
@@ -154,6 +154,25 @@ export class MyService {
 - `auto_color`: Ajusta automáticamente el color de la imagen.
 - `auto_contrast`: Ajusta automáticamente el contraste de la imagen.
 - `improve`: Mejora automáticamente la calidad de la imagen.
+
+#### Observación
+
+Los efectos aceptan un valor númerico, ejemplo: `blur:300`
+
+#### 📉 Tipos de Calidad (cloudQuality) soportados por Cloudinary para imágenes:
+
+- `auto`: Calidad automática, dejando que Cloudinary decida.
+- `auto:best`: Calidad automática, priorizando la mejor calidad.
+- `auto:good`: Calidad automática, priorizando un buen equilibrio entre calidad y tamaño.
+- `auto:eco`: Calidad automática, priorizando un tamaño de archivo más pequeño.
+- `number`: Un valor numérico que especifica la calidad, por ejemplo: `cloudQuality:70`
+
+#### 🌐 Formatos de Búsqueda (cloudFetchFormat) soportados por Cloudinary:
+
+- `auto`: Detecta y usa automáticamente el mejor formato de archivo.
+- `webp`: Convierte la imagen al formato WebP.
+- `jpg`: Convierte la imagen al formato JPG.
+- `png`: Convierte la imagen al formato PNG.
 
 ## 🤝 Contribución
 
